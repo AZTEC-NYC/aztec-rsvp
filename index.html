@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>An Evening with AZTEC _ RSVP</title>
+<meta name="description" content="RSVP for An Evening with AZTEC at Barney Greengrass, November 10, 2026.">
+<meta name="robots" content="noindex">
+
+<!-- Fallback face: Aztec Mono descends from Geist Mono (OFL). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap">
+
+<style>
+/* Aztec Mono, loaded from the fonts/ folder next to this page.
+   WEB TEAM: keep the font files beside index.html. */
+@font-face {
+  font-family: "Aztec Mono";
+  src: url("AztecMonoVF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* AZTEC _ BRAND DESIGN SYSTEM tokens.
+   Layout: document grid. 20px margin, 48px header rail, two-column split. */
+:root {
+  --aztec-green: #3A5B43;   /* PMS 7735 C. Always leads. */
+  --white: #FFFFFF;
+  --black: #000000;
+  --ink: #231F20;
+  --gray-c1: #C1C1C1;
+  --gray-ef: #EFEFEF;
+  --surface: #F7F7F7;
+  --muted: rgba(0,0,0,0.45);
+  --rule-on-green: rgba(255,255,255,0.4);
+  --error: #A3261E;
+
+  --font-mono: "Aztec Mono", "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --fs-display: clamp(40px, 6.2vw, 62px);
+  --fs-headline: clamp(28px, 4.2vw, 52px);
+  --fs-lead: 20px;
+  --fs-label: 16px;
+  --fs-body: 14px;
+  --fs-fine: 12px;
+
+  --margin: 20px;
+  --rail: 48px;
+  --g10: 10px; --g15: 15px; --g20: 20px; --g27: 27px; --g30: 30px; --g45: 45px;
+
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; border-radius: 0; }
+html, body { margin: 0; }
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--fs-body);
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.upper { text-transform: uppercase; }
+
+/* Header rail: owner · date · section */
+.rail {
+  height: var(--rail);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding-inline: var(--margin);
+  border-bottom: 1px solid var(--black);
+  font-size: var(--fs-fine);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.rail-left { display: flex; align-items: center; gap: var(--g10); }
+.rail-left svg { color: var(--aztec-green); display: block; }
+.rail-icon { width: 20px; height: 20px; }
+.rail-wordmark { width: 75px; height: 14px; }
+.rail-right { display: grid; grid-template-columns: auto 1fr; gap: var(--g30); }
+.rail-right span:last-child { justify-self: start; }
+
+.sheet {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - var(--rail));
+}
+
+/* Left: green cover */
+.cover {
+  background: var(--aztec-green);
+  color: var(--white);
+  padding: var(--g45) var(--margin) var(--margin);
+  display: flex;
+  flex-direction: column;
+  gap: var(--g45);
+}
+.cover .mark { width: 72px; height: 72px; color: var(--white); }
+.cover h1 {
+  margin: 0;
+  font-size: var(--fs-display);
+  line-height: 1.12;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+.specs {
+  margin: 0;
+  display: grid;
+  border-top: 1px solid var(--rule-on-green);
+}
+.specs div {
+  display: grid;
+  grid-template-columns: 9ch 1fr;
+  gap: var(--g20);
+  padding-block: var(--g15);
+  border-bottom: 1px solid var(--rule-on-green);
+  font-size: var(--fs-label);
+}
+.specs dt { opacity: 0.6; text-transform: uppercase; font-size: var(--fs-fine); padding-top: 3px; }
+.specs dd { margin: 0; text-transform: uppercase; }
+.specs dd small { display: block; text-transform: none; font-size: var(--fs-fine); opacity: 0.75; margin-top: 4px; }
+.cover-foot {
+  margin-top: auto;
+  font-size: var(--fs-fine);
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+/* Right: form panel */
+.panel {
+  padding: var(--g45) var(--margin) var(--margin);
+  display: flex;
+  flex-direction: column;
+  gap: var(--g30);
+  max-width: 720px;
+  width: 100%;
+}
+.panel h2 {
+  margin: 0;
+  font-size: var(--fs-headline);
+  line-height: 1.04;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.lead { margin: 0; font-size: var(--fs-label); max-width: 52ch; }
+
+form { display: grid; gap: var(--g27); }
+.field { display: grid; gap: var(--g10); }
+.label {
+  font-size: var(--fs-fine);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--black);
+  display: flex; justify-content: space-between;
+}
+.label .req { color: var(--muted); }
+input[type="text"], input[type="email"] {
+  font: inherit;
+  font-size: var(--fs-lead);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid transparent;
+  padding: 14px 15px;
+  width: 100%;
+  outline: none;
+  transition: border-color 120ms linear, background 120ms linear;
+}
+input[type="text"]:focus, input[type="email"]:focus {
+  border-color: var(--aztec-green);
+  background: var(--white);
+}
+.field.invalid input { border-color: var(--error); background: var(--white); }
+.err { color: var(--error); font-size: var(--fs-fine); }
+.err:empty { display: none; }
+legend.label { padding-inline: 0; }
+
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.choice { display: grid; grid-template-columns: 1fr 1fr; }
+.choice label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+.choice input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.choice span {
+  display: block;
+  padding: 18px 15px;
+  border: 1px solid var(--black);
+  font-size: var(--fs-label);
+  text-transform: uppercase;
+  transition: background 120ms linear, color 120ms linear;
+}
+.choice label + label span { border-left: 0; }
+.choice label:hover span { background: var(--surface); }
+.choice input:checked + span { background: var(--aztec-green); color: var(--white); border-color: var(--aztec-green); }
+.choice input:focus-visible + span { outline: 2px solid var(--aztec-green); outline-offset: 2px; }
+.field.invalid .choice span { border-color: var(--error); }
+
+button[type="submit"] {
+  font: inherit;
+  font-size: var(--fs-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--aztec-green);
+  color: var(--white);
+  border: 1px solid var(--aztec-green);
+  padding: 18px 20px;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: background 120ms linear, color 120ms linear;
+}
+button[type="submit"]:hover { background: var(--black); border-color: var(--black); }
+button[type="submit"]:focus-visible { outline: 2px solid var(--black); outline-offset: 3px; }
+button[disabled] { opacity: 0.5; cursor: progress; }
+.form-error { color: var(--error); font-size: var(--fs-fine); margin: 0; }
+
+.done {
+  border: 1px solid var(--black);
+  padding: var(--g30) var(--g20);
+  display: grid;
+  gap: var(--g15);
+}
+.done .tag { font-size: var(--fs-fine); text-transform: uppercase; color: var(--muted); }
+.done h3 { margin: 0; font-size: 28px; line-height: 1.1; font-weight: 600; text-transform: uppercase; }
+.done p { margin: 0; font-size: var(--fs-label); }
+.linkish {
+  font: inherit; font-size: var(--fs-fine); text-transform: uppercase;
+  background: none; border: 0; padding: 0; color: var(--aztec-green);
+  text-decoration: underline; text-underline-offset: 3px; cursor: pointer; justify-self: start;
+}
+
+.panel-foot {
+  margin-top: auto;
+  font-size: var(--fs-fine);
+  color: var(--muted);
+  text-transform: uppercase;
+  border-top: 1px solid var(--gray-c1);
+  padding-top: var(--g10);
+}
+
+[hidden] { display: none !important; }
+
+@media (max-width: 860px) {
+  .sheet { grid-template-columns: 1fr; min-height: 0; }
+  .cover { gap: var(--g30); padding-top: var(--g30); }
+  .cover .mark { width: 56px; height: 56px; }
+  .cover-foot { margin-top: var(--g10); }
+  .panel { padding-top: var(--g30); }
+  .rail-right { gap: var(--g15); }
+  .rail-right .hide-sm { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<!-- AZTEC icon + wordmark, from the official .ai files (also in assets/).
+     Single-color marks painted with currentColor: green on white, white on green. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="aztec-icon" viewBox="274.08 274.29 171.84 171.42">
+    <path fill="currentColor" d="M 337.996094 396.789062 L 348.402344 376.40625 L 371.597656 376.40625 L 382.003906 396.789062 Z M 421.339844 395.28125 L 421.339844 371.792969 L 394.511719 371.792969 L 394.511719 348.304688 L 372.777344 348.304688 L 372.777344 306.601562 L 364.054688 306.601562 L 364.054688 274.292969 L 355.945312 274.292969 L 355.945312 306.601562 L 347.222656 306.601562 L 347.222656 348.304688 L 325.488281 348.304688 L 325.488281 371.792969 L 298.660156 371.792969 L 298.660156 395.28125 L 274.082031 395.28125 L 274.082031 445.703125 L 313.027344 445.703125 L 325.882812 420.519531 L 394.117188 420.519531 L 406.972656 445.703125 L 445.917969 445.703125 L 445.917969 395.28125 Z M 421.339844 395.28125"/>
+  </symbol>
+  <symbol id="aztec-wordmark" viewBox="170.49 324.71 379.02 70.58">
+    <path fill="currentColor" d="M 208.15625 369.628906 L 218.363281 348.773438 L 228.570312 369.628906 Z M 322.609375 395.28125 L 322.609375 379.949219 L 279.464844 379.949219 L 319.464844 340.050781 L 319.464844 324.71875 L 251.628906 324.71875 L 251.628906 340.050781 L 290.253906 340.050781 L 255.632812 374.523438 L 230.210938 324.71875 L 206.515625 324.71875 L 170.496094 395.28125 L 195.601562 395.28125 L 201.902344 382.40625 L 234.824219 382.40625 L 241.125 395.28125 Z M 322.609375 395.28125"/>
+    <path fill="currentColor" d="M 324.691406 324.71875 L 324.691406 340.050781 L 348.261719 340.050781 L 348.261719 395.28125 L 372.828125 395.28125 L 372.828125 340.050781 L 396.402344 340.050781 L 396.402344 324.71875 Z M 324.691406 324.71875"/>
+    <path fill="currentColor" d="M 472.8125 395.28125 L 472.8125 379.949219 L 426.71875 379.949219 L 426.71875 366.390625 L 456.632812 366.390625 L 456.632812 353.609375 L 426.71875 353.609375 L 426.71875 340.050781 L 472.8125 340.050781 L 472.8125 324.71875 L 401.832031 324.71875 L 401.832031 395.28125 Z M 472.8125 395.28125"/>
+    <path fill="currentColor" d="M 478.519531 324.71875 L 478.519531 395.28125 L 549.503906 395.28125 L 549.503906 379.949219 L 503.40625 379.949219 L 503.40625 340.050781 L 549.503906 340.050781 L 549.503906 324.71875 Z M 478.519531 324.71875"/>
+  </symbol>
+</svg>
+
+<header class="rail">
+  <div class="rail-left">
+    <svg class="rail-icon" aria-hidden="true"><use href="#aztec-icon"/></svg>
+    <svg class="rail-wordmark" role="img" aria-label="AZTEC"><use href="#aztec-wordmark"/></svg>
+  </div>
+  <div class="rail-right">
+    <span>20261110</span>
+    <span><span class="hide-sm">An evening with AZTEC _ </span>RSVP</span>
+  </div>
+</header>
+
+<main class="sheet">
+  <section class="cover" aria-labelledby="event-title">
+    <svg class="mark" role="img" aria-label="AZTEC"><use href="#aztec-icon"/></svg>
+    <h1 id="event-title">An evening with AZTEC</h1>
+
+    <dl class="specs">
+      <div><dt>Date</dt><dd>Tuesday, Nov 10, 2026</dd></div>
+      <div><dt>Time</dt><dd>6:00 PM</dd></div>
+      <div><dt>Place</dt><dd>Barney Greengrass<small>541 Amsterdam Ave at 86th St, New York, NY</small></dd></div>
+      <div><dt>Dress</dt><dd>No dress code</dd></div>
+      <div><dt>RSVP by</dt><dd>Monday, Nov 2</dd></div>
+    </dl>
+
+    <p class="cover-foot">AZTEC_BUILDING MONUMENTS</p>
+  </section>
+
+  <section class="panel" aria-labelledby="rsvp-title">
+    <h2 id="rsvp-title">Will we see you there?</h2>
+    <p class="lead" id="lead">Let us know by November 2 so we can plan for you.</p>
+
+    <form id="rsvp" novalidate>
+      <div class="field" id="f-name">
+        <label class="label" for="name"><span>Full name</span><span class="req">Required</span></label>
+        <input type="text" id="name" name="name" autocomplete="name" required>
+        <div class="err" id="name-err" aria-live="polite"></div>
+      </div>
+
+      <div class="field" id="f-email">
+        <label class="label" for="email"><span>Email</span><span class="req">Required</span></label>
+        <input type="email" id="email" name="email" autocomplete="email" inputmode="email" required>
+        <div class="err" id="email-err" aria-live="polite"></div>
+      </div>
+
+      <fieldset class="field" id="f-attending">
+        <legend class="label" style="width:100%"><span>Attending</span><span class="req">Required</span></legend>
+        <div class="choice">
+          <label><input type="radio" id="att-yes" name="attending" value="yes"><span>Yes, I'll be there</span></label>
+          <label><input type="radio" id="att-no" name="attending" value="no"><span>No, can't make it</span></label>
+        </div>
+        <div class="err" id="attending-err" aria-live="polite"></div>
+      </fieldset>
+
+      <button type="submit" id="submit"><span>Send RSVP</span><span aria-hidden="true">→</span></button>
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+    </form>
+
+    <div class="done" id="done" hidden aria-live="polite">
+      <span class="tag" id="done-tag">RSVP received</span>
+      <h3 id="done-title">See you on the 10th.</h3>
+      <p id="done-body">We've got you down. Barney Greengrass, 6:00 PM.</p>
+      <button type="button" class="linkish" id="again">Change my answer</button>
+    </div>
+
+    <div class="done" id="closed" hidden>
+      <span class="tag">RSVP closed</span>
+      <h3>RSVPs closed on November 2.</h3>
+      <p>If you still need to reach us about the evening, contact your AZTEC host directly.</p>
+    </div>
+
+    <p class="panel-foot">AZTEC _ New York _ 2026</p>
+  </section>
+</main>
+
+<script>
+/* ============================================================
+   RSVPs go to Kit: form "AN EVENING WITH AZTEC" (ID 10011354).
+   Each RSVP becomes a subscriber on that form:
+     first_name              -> guest's full name
+     email_address           -> guest's email
+     fields[rsvp_attending]  -> "yes" or "no"
+   Set KIT_FORM_ID to "" to run in preview mode (nothing is sent).
+   ============================================================ */
+const KIT_FORM_ID = "10011354";
+const RSVP_DEADLINE = new Date("2026-11-03T00:00:00-05:00"); // end of Nov 2, New York time
+
+(function () {
+  const form = document.getElementById("rsvp");
+  const done = document.getElementById("done");
+  const closed = document.getElementById("closed");
+  const lead = document.getElementById("lead");
+  const submit = document.getElementById("submit");
+  const formError = document.getElementById("form-error");
+
+  if (Date.now() >= RSVP_DEADLINE.getTime()) {
+    form.hidden = true;
+    lead.hidden = true;
+    closed.hidden = false;
+    return;
+  }
+
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  function setErr(id, msg) {
+    document.getElementById(id + "-err").textContent = msg || "";
+    document.getElementById("f-" + id).classList.toggle("invalid", !!msg);
+  }
+
+  function validate() {
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const attending = (form.querySelector('input[name="attending"]:checked') || {}).value;
+    let ok = true;
+    setErr("name", name ? "" : "Enter your name.");
+    if (!name) ok = false;
+    if (!email) { setErr("email", "Enter your email."); ok = false; }
+    else if (!emailRe.test(email)) { setErr("email", "Check the email address. It should look like name@example.com."); ok = false; }
+    else setErr("email", "");
+    setErr("attending", attending ? "" : "Choose yes or no.");
+    if (!attending) ok = false;
+    return ok ? { name, email, attending } : null;
+  }
+
+  ["name", "email"].forEach(id => form[id].addEventListener("input", () => {
+    if (document.getElementById("f-" + id).classList.contains("invalid")) validate();
+  }));
+  form.querySelectorAll('input[name="attending"]').forEach(r =>
+    r.addEventListener("change", () => setErr("attending", "")));
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    formError.hidden = true;
+    const data = validate();
+    if (!data) {
+      const firstBad = form.querySelector(".invalid input");
+      if (firstBad) firstBad.focus();
+      return;
+    }
+
+    submit.disabled = true;
+    submit.firstElementChild.textContent = "Sending…";
+
+    try {
+      if (KIT_FORM_ID) {
+        const fd = new FormData();
+        fd.append("email_address", data.email);
+        fd.append("first_name", data.name);
+        fd.append("fields[rsvp_attending]", data.attending);
+        const res = await fetch("https://app.kit.com/forms/" + KIT_FORM_ID + "/subscriptions", {
+          method: "POST",
+          headers: { "Accept": "application/json" },
+          body: fd
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || json.status !== "success") {
+          const msg = (json.errors && json.errors.messages || []).join(" ");
+          if (/email/i.test(msg)) {
+            setErr("email", "Kit didn't accept that email address. Check it and try again.");
+            form.email.focus();
+            return;
+          }
+          throw new Error(msg || ("HTTP " + res.status));
+        }
+      } else {
+        console.info("[AZTEC RSVP] Preview mode, nothing sent:", data);
+      }
+      showDone(data);
+    } catch (err) {
+      formError.textContent = "Your RSVP didn't go through. Check your connection and try again.";
+      formError.hidden = false;
+    } finally {
+      submit.disabled = false;
+      submit.firstElementChild.textContent = "Send RSVP";
+    }
+  });
+
+  function showDone(data) {
+    const first = data.name.split(/\s+/)[0];
+    if (data.attending === "yes") {
+      document.getElementById("done-title").textContent = "See you on the 10th, " + first + ".";
+      document.getElementById("done-body").textContent = "You're on the list. Tuesday, November 10, 6:00 PM at Barney Greengrass.";
+    } else {
+      document.getElementById("done-title").textContent = "We'll miss you, " + first + ".";
+      document.getElementById("done-body").textContent = "Thanks for letting us know.";
+    }
+    form.hidden = true;
+    lead.hidden = true;
+    done.hidden = false;
+    document.getElementById("again").focus();
+  }
+
+  document.getElementById("again").addEventListener("click", () => {
+    done.hidden = true;
+    form.hidden = false;
+    lead.hidden = false;
+    form.name.focus();
+  });
+})();
+</script>
+</body>
+</html>
