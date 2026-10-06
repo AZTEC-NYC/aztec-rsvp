@@ -232,6 +232,14 @@ button[disabled] { opacity: 0.5; cursor: progress; }
 .done .tag { font-size: var(--fs-fine); text-transform: uppercase; color: var(--muted); }
 .done h3 { margin: 0; font-size: 28px; line-height: 1.1; font-weight: 600; text-transform: uppercase; }
 .done p { margin: 0; font-size: var(--fs-label); }
+.cal { display: flex; flex-wrap: wrap; gap: var(--g10); }
+.cal a {
+  font-size: var(--fs-fine); text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--aztec-green); text-decoration: none;
+  border: 1px solid var(--aztec-green); padding: 10px 12px;
+  transition: background 120ms linear, color 120ms linear;
+}
+.cal a:hover { background: var(--aztec-green); color: var(--white); }
 .linkish {
   font: inherit; font-size: var(--fs-fine); text-transform: uppercase;
   background: none; border: 0; padding: 0; color: var(--aztec-green);
@@ -295,7 +303,7 @@ button[disabled] { opacity: 0.5; cursor: progress; }
 
     <dl class="specs">
       <div><dt>Date</dt><dd>Tuesday, Nov 10, 2026</dd></div>
-      <div><dt>Time</dt><dd>6:00 PM</dd></div>
+      <div><dt>Time</dt><dd>6:00 – 9:00 PM</dd></div>
       <div><dt>Place</dt><dd>Barney Greengrass<small>541 Amsterdam Ave at 86th St, New York, NY</small></dd></div>
       <div><dt>Dress</dt><dd>No dress code</dd></div>
       <div><dt>RSVP by</dt><dd>Monday, Nov 2</dd></div>
@@ -338,6 +346,10 @@ button[disabled] { opacity: 0.5; cursor: progress; }
       <span class="tag" id="done-tag">RSVP received</span>
       <h3 id="done-title">See you on the 10th.</h3>
       <p id="done-body">We've got you down. Barney Greengrass, 6:00 PM.</p>
+      <div class="cal" id="cal">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=An%20Evening%20with%20AZTEC&amp;dates=20261110T230000Z/20261111T020000Z&amp;location=Barney%20Greengrass%2C%20541%20Amsterdam%20Ave%2C%20New%20York%2C%20NY%2010024&amp;details=6%3A00%E2%80%939%3A00%20PM.%20No%20dress%20code." target="_blank" rel="noopener">Add to Google Calendar</a>
+        <a href="invite.ics">Add to Apple / Outlook</a>
+      </div>
       <button type="button" class="linkish" id="again">Change my answer</button>
     </div>
 
@@ -361,6 +373,9 @@ button[disabled] { opacity: 0.5; cursor: progress; }
    Set KIT_FORM_ID to "" to run in preview mode (nothing is sent).
    ============================================================ */
 const KIT_FORM_ID = "10011354";
+// Kit automation "An Evening with AZTEC - RSVP Yes Confirmation" emails
+// guests when rsvp_attending changes to "yes". Set false if it's turned off.
+const CONFIRMATION_EMAIL = true;
 const RSVP_DEADLINE = new Date("2026-11-03T00:00:00-05:00"); // end of Nov 2, New York time
 
 (function () {
@@ -457,11 +472,12 @@ const RSVP_DEADLINE = new Date("2026-11-03T00:00:00-05:00"); // end of Nov 2, Ne
     const first = data.name.split(/\s+/)[0];
     if (data.attending === "yes") {
       document.getElementById("done-title").textContent = "See you on the 10th, " + first + ".";
-      document.getElementById("done-body").textContent = "You're on the list. Tuesday, November 10, 6:00 PM at Barney Greengrass.";
+      document.getElementById("done-body").textContent = "You're on the list. Tuesday, November 10, 6:00 PM at Barney Greengrass." + (CONFIRMATION_EMAIL ? " A confirmation email is on its way." : "");
     } else {
       document.getElementById("done-title").textContent = "We'll miss you, " + first + ".";
       document.getElementById("done-body").textContent = "Thanks for letting us know.";
     }
+    document.getElementById("cal").hidden = data.attending !== "yes";
     form.hidden = true;
     lead.hidden = true;
     done.hidden = false;
