@@ -255,6 +255,35 @@ button[disabled] { opacity: 0.5; cursor: progress; }
   padding-top: var(--g10);
 }
 
+
+/* Password screen: keeps casual visitors out. Not real security. */
+html.locked .rail, html.locked .sheet { display: none; }
+.gate {
+  min-height: 100vh; min-height: 100dvh;
+  background: var(--aztec-green); color: var(--white);
+  display: none; align-items: center; justify-content: center;
+  padding: var(--g45) var(--margin);
+}
+html.locked .gate { display: flex; }
+.gate-inner { width: 100%; max-width: 420px; display: grid; gap: var(--g30); }
+.gate .mark { width: 64px; height: 64px; color: var(--white); }
+.gate h1 { margin: 0; font-size: clamp(32px, 6vw, 48px); line-height: 1.1; font-weight: 500; text-transform: uppercase; }
+.gate form { display: grid; gap: var(--g15); }
+.gate .label { border-bottom-color: var(--rule-on-green); color: var(--white); }
+.gate input[type="password"] {
+  font: inherit; font-size: var(--fs-lead); color: var(--ink);
+  background: var(--white); border: 1px solid transparent;
+  padding: 14px 15px; width: 100%; outline: none;
+}
+.gate input[type="password"]:focus { border-color: var(--black); }
+.gate button {
+  font: inherit; font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.04em;
+  background: var(--black); color: var(--white); border: 1px solid var(--black);
+  padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between;
+}
+.gate button:hover { background: var(--ink); }
+.gate .gate-err { color: var(--white); font-size: var(--fs-fine); text-transform: uppercase; min-height: 1em; margin: 0; }
+
 [hidden] { display: none !important; }
 
 @media (max-width: 860px) {
@@ -270,6 +299,11 @@ button[disabled] { opacity: 0.5; cursor: progress; }
 </style>
 </head>
 <body>
+<script>
+  // Unlock check runs before the page paints, so locked visitors never see the content.
+  (function(){var ok=false;try{ok=localStorage.getItem("aztec-rsvp-unlocked")==="1";}catch(e){}
+  if(!ok)document.documentElement.classList.add("locked");})();
+</script>
 
 <!-- AZTEC icon + wordmark, from the official .ai files (also in assets/).
      Single-color marks painted with currentColor: green on white, white on green. -->
@@ -284,6 +318,20 @@ button[disabled] { opacity: 0.5; cursor: progress; }
     <path fill="currentColor" d="M 478.519531 324.71875 L 478.519531 395.28125 L 549.503906 395.28125 L 549.503906 379.949219 L 503.40625 379.949219 L 503.40625 340.050781 L 549.503906 340.050781 L 549.503906 324.71875 Z M 478.519531 324.71875"/>
   </symbol>
 </svg>
+
+
+<section class="gate" aria-labelledby="gate-title">
+  <div class="gate-inner">
+    <svg class="mark" role="img" aria-label="AZTEC"><use href="#aztec-icon"/></svg>
+    <h1 id="gate-title">An evening with AZTEC</h1>
+    <form id="gate-form" novalidate>
+      <label class="label" for="gate-pw"><span>Password</span><span>From your invite</span></label>
+      <input type="password" id="gate-pw" autocomplete="current-password" required>
+      <p class="gate-err" id="gate-err" aria-live="polite"></p>
+      <button type="submit"><span>Enter</span><span aria-hidden="true">→</span></button>
+    </form>
+  </div>
+</section>
 
 <header class="rail">
   <div class="rail-left">
@@ -364,6 +412,34 @@ button[disabled] { opacity: 0.5; cursor: progress; }
 </main>
 
 <script>
+
+/* Password screen. PASSWORD_HASH is the SHA-256 of the password in lowercase,
+   so the password itself isn't written in the page. Not real security. */
+const PASSWORD_HASH = "26a05370613ccf56c10ddc2439e319dc808aa9cd14ea8e1b64bde0fc602d3c9d";
+(function () {
+  const root = document.documentElement;
+  const form = document.getElementById("gate-form");
+  const input = document.getElementById("gate-pw");
+  const err = document.getElementById("gate-err");
+  if (!root.classList.contains("locked")) return;
+  input.focus();
+  async function sha256(t) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const h = await sha256(input.value.trim().toLowerCase());
+    if (h === PASSWORD_HASH) {
+      try { localStorage.setItem("aztec-rsvp-unlocked", "1"); } catch (_) {}
+      root.classList.remove("locked");
+      const n = document.getElementById("name"); if (n) n.focus();
+    } else {
+      err.textContent = "That password isn't right. Check your invite.";
+      input.select();
+    }
+  });
+})();
 /* ============================================================
    RSVPs go to Kit: form "AN EVENING WITH AZTEC" (ID 10011354).
    Each RSVP becomes a subscriber on that form:
