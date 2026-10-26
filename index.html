@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>An Evening with AZTEC _ RSVP</title>
-<meta name="description" content="RSVP for An Evening with AZTEC at Barney Greengrass, November 10, 2026.">
+<meta name="description" content="RSVP for An Evening with AZTEC at Lucali, November 11, 2026.">
 <meta name="robots" content="noindex">
 
 <!-- Fallback face: Aztec Mono descends from Geist Mono (OFL). -->
@@ -339,7 +339,7 @@ html.locked .gate { display: flex; }
     <svg class="rail-wordmark" role="img" aria-label="AZTEC"><use href="#aztec-wordmark"/></svg>
   </div>
   <div class="rail-right">
-    <span>20261110</span>
+    <span>20261111</span>
     <span><span class="hide-sm">An evening with AZTEC _ </span>RSVP</span>
   </div>
 </header>
@@ -350,9 +350,9 @@ html.locked .gate { display: flex; }
     <h1 id="event-title">An evening with AZTEC</h1>
 
     <dl class="specs">
-      <div><dt>Date</dt><dd>Tuesday, Nov 10, 2026</dd></div>
-      <div><dt>Time</dt><dd>6:00 – 9:00 PM</dd></div>
-      <div><dt>Place</dt><dd>Barney Greengrass<small>541 Amsterdam Ave at 86th St, New York, NY</small></dd></div>
+      <div><dt>Date</dt><dd>Wednesday, Nov 11, 2026</dd></div>
+      <div><dt>Time</dt><dd>5:00 – 8:00 PM</dd></div>
+      <div><dt>Place</dt><dd>Lucali<small>575 Henry St, Brooklyn, NY</small></dd></div>
       <div><dt>Dress</dt><dd>No dress code</dd></div>
       <div><dt>RSVP by</dt><dd>Monday, Nov 2</dd></div>
     </dl>
@@ -392,10 +392,10 @@ html.locked .gate { display: flex; }
 
     <div class="done" id="done" hidden aria-live="polite">
       <span class="tag" id="done-tag">RSVP received</span>
-      <h3 id="done-title">See you on the 10th.</h3>
-      <p id="done-body">We've got you down. Barney Greengrass, 6:00 PM.</p>
+      <h3 id="done-title">See you on the 11th.</h3>
+      <p id="done-body">We've got you down. Lucali, 5:00 PM.</p>
       <div class="cal" id="cal">
-        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=An%20Evening%20with%20AZTEC&amp;dates=20261110T230000Z/20261111T020000Z&amp;location=Barney%20Greengrass%2C%20541%20Amsterdam%20Ave%2C%20New%20York%2C%20NY%2010024&amp;details=6%3A00%E2%80%939%3A00%20PM.%20No%20dress%20code." target="_blank" rel="noopener">Add to Google Calendar</a>
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=An%20Evening%20with%20AZTEC&amp;dates=20261111T220000Z/20261112T010000Z&amp;location=Lucali%2C%20575%20Henry%20St%2C%20Brooklyn%2C%20NY%2011231&amp;details=5%3A00%E2%80%938%3A00%20PM.%20No%20dress%20code." target="_blank" rel="noopener">Add to Google Calendar</a>
         <a href="invite.ics">Add to Apple / Outlook</a>
       </div>
       <button type="button" class="linkish" id="again">Change my answer</button>
@@ -547,8 +547,8 @@ const RSVP_DEADLINE = new Date("2026-11-03T00:00:00-05:00"); // end of Nov 2, Ne
   function showDone(data) {
     const first = data.name.split(/\s+/)[0];
     if (data.attending === "yes") {
-      document.getElementById("done-title").textContent = "See you on the 10th, " + first + ".";
-      document.getElementById("done-body").textContent = "You're on the list. Tuesday, November 10, 6:00 PM at Barney Greengrass." + (CONFIRMATION_EMAIL ? " A confirmation email is on its way." : "");
+      document.getElementById("done-title").textContent = "See you on the 11th, " + first + ".";
+      document.getElementById("done-body").textContent = "You're on the list. Wednesday, November 11, 5:00 PM at Lucali." + (CONFIRMATION_EMAIL ? " A confirmation email is on its way." : "");
     } else {
       document.getElementById("done-title").textContent = "We'll miss you, " + first + ".";
       document.getElementById("done-body").textContent = "Thanks for letting us know.";
